@@ -1,12 +1,12 @@
 # how-to-display-more-data-on-tooltip-of-Blazor-chart
 
-This article axplains how to dieplay more data on tooltip of a blazor chart.
+This article explains how to display more data on tooltip of a blazor chart.
 
 **Display more information on tooltip using Template property**
 
 The [Blazor Chart](https://www.syncfusion.com/blazor-components/blazor-charts) provides the support to display the needed information from its model of populated items source along with the Tooltip UI customization with the help of [Template](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.ChartTooltipSettings.html#Syncfusion_Blazor_Charts_ChartTooltipSettings_Template) property of [ChartTooltipSettings](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.ChartTooltipSettings.html).
 
-Any HTML elements can be displayed within the tooltip by using the Template property of the[ChartTooltipSettings](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.ChartTooltipSettings.html) . You can use the data.X and data.Y as place holders in the HTML element to display x and y values of the corresponding data point.
+Any HTML elements can be displayed within the tooltip by using the Template property of the [ChartTooltipSettings](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.ChartTooltipSettings.html) . You can use the data.X and data.Y as place holders in the HTML element to display x and y values of the corresponding data point.
 
 The following code example illustrates this.
 **C#**
