@@ -1,80 +1,91 @@
-# how-to-display-more-data-on-tooltip-of-Blazor-chart
+# Display More Data in a Syncfusion Blazor Chart Tooltip Using a Custom Template
 
-This article explains how to display more data on tooltip of a blazor chart.
+## Overview
 
-**Display more information on tooltip using Template property**
+This sample demonstrates how to customize tooltips in Syncfusion [Blazor Charts](https://www.syncfusion.com/blazor-components/blazor-charts) by using the `ChartTooltipSettings.Template` property. Instead of displaying only the default tooltip content, the chart renders custom HTML markup within the tooltip and accesses the selected data point through `ChartTooltipInfo`.
 
-The [Blazor Chart](https://www.syncfusion.com/blazor-components/blazor-charts) provides the support to display the needed information from its model of populated items source along with the Tooltip UI customization with the help of [Template](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.ChartTooltipSettings.html#Syncfusion_Blazor_Charts_ChartTooltipSettings_Template) property of [ChartTooltipSettings](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.ChartTooltipSettings.html).
+The sample visualizes unemployment-rate data using a step-line chart and displays the corresponding year and value inside a formatted table when users hover over a data point. This approach is useful when applications need to present additional contextual information, custom layouts, branding, or multiple fields beyond the default chart tooltip content.
 
-Any HTML elements can be displayed within the tooltip by using the Template property of the [ChartTooltipSettings](https://help.syncfusion.com/cr/blazor/Syncfusion.Blazor.Charts.ChartTooltipSettings.html) . You can use the data.X and data.Y as place holders in the HTML element to display x and y values of the corresponding data point.
+## Key Features
 
-The following code example illustrates this.
-**C#**
+- Uses the `SfChart` component to render chart data.
+- Configures a chart series using:
+  - `ChartSeries`
+  - `Type="ChartSeriesType.StepLine"`
+  - `DataSource="StepChartValues"`
+  - `XName="Year"`
+  - `YName="YValue"`
+- Displays markers for individual data points using:
+  - `ChartMarker`
+  - `Visible="true"`
+  - `Width="10"`
+  - `Height="10"`
+- Enables tooltip support through:
+  - `ChartTooltipSettings`
+  - `Enable="true"`
+- Customizes tooltip content using:
+  - `ChartTooltipSettings.Template`
+- Accesses the current tooltip context through:
+  - `ChartTooltipInfo`
+- Displays point information using:
+  - `data.X`
+  - `data.Y`
+- Uses standard HTML table elements inside the tooltip template to present formatted data.
 
-```cshtml
+## Prerequisites
 
-@using Syncfusion.Blazor.Charts
+- [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) or [Visual Studio Code](https://code.visualstudio.com/)
+- [.NET SDK](https://dotnet.microsoft.com/en-us/download/dotnet) compatible with the project's target framework
 
-<SfChart Title="Unemployment Rates 1975-2010">
+## How to Run the Project
 
-    <ChartSeriesCollection>
-        <ChartSeries DataSource="StepChartValues" Type="ChartSeriesType.StepLine" XName="Year" YName="YValue" Name="China">
-            <ChartMarker Visible="true" Width="10" Height="10">
-            </ChartMarker>
-        </ChartSeries>
-    </ChartSeriesCollection>
+**Visual Studio 2022**
 
-    <ChartTooltipSettings Enable="true">
-        <Template>
-            @{
-                var data = context as ChartTooltipInfo;
-                <div>
-                    <table style="width:100%;  border: 1px solid black;">
-                        <tr><th colspan="2" bgcolor="#00FFFF">Unemployment</th></tr>
-                        <tr><td bgcolor="#00FFFF">@data.X:</td><td bgcolor="#00FFFF">@data.Y</td></tr>
-                    </table>
-                </div>
-            }
-        </Template>
-    </ChartTooltipSettings>
+1. Clone or download this repository.
+2. Open the following project file:
 
-</SfChart>
+   `TooltipTemplate/TooltipTemplate.csproj`
 
-@code {
-    
-    public List<StepChartData> StepChartValues = new List<StepChartData>
-    {
-        new StepChartData { Year = "1975", YValue = 16 },
-        new StepChartData { Year = "1980", YValue = 12.5 },
-        new StepChartData { Year = "1985", YValue = 19 },
-        new StepChartData { Year = "1990", YValue = 14.4 },
-        new StepChartData { Year = "1995", YValue = 11.5 },
-        new StepChartData { Year = "2000", YValue = 14 },
-        new StepChartData { Year = "2005", YValue = 10 },
-        new StepChartData { Year = "2010", YValue = 16 }
-    };
+3. Restore NuGet packages.
+4. Build the project.
+5. Run the application using **Ctrl+F5**.
+6. Hover over the chart data points to view the customized tooltip template.
 
-    public class StepChartData
-    {
-        public string Year { get; set; }
-        public double YValue { get; set; }
-    }
-}
+**Visual Studio Code**
 
+1. Clone or download this repository.
+2. Open the repository folder in Visual Studio Code.
+3. Open the integrated terminal.
+4. Navigate to the project directory:
+
+```bash
+cd ToolTipTemplate/TooltipTemplate
 ```
 
-The following screenshot illustrate the output of the above code snippet.
+5. Restore NuGet packages:
 
-**Output:**
-![](/tooltip-template.png)
+```bash
+dotnet restore
+```
 
-**Conclusion**
+6. Run the application:
 
-I hope you enjoyed learning how to display more data on tooltip of Blazor Chart Component.
+```bash
+dotnet run
+```
 
-You can refer to our [Blazor Chart feature tour](https://www.syncfusion.com/blazor-components/blazor-charts) page to know about its other groundbreaking feature representations and [documentation](https://blazor.syncfusion.com/documentation/chart/getting-started), and how to quickly get started for configuration specifications. You can also explore our [Blazor Chart example](https://blazor.syncfusion.com/demos/chart/line?theme=bootstrap5) to understand how to create and manipulate data.
+7. Open the local application URL and hover over the chart points to view the customized tooltip template.
 
-For current customers, you can check out our components from the [License and Downloads](https://www.syncfusion.com/sales/teamlicense) page. If you are new to Syncfusion, you can try our 30-day [free trial](https://www.syncfusion.com/downloads/blazor) to check out our other controls.
+## Project Structure
 
-If you have any queries or require clarifications, please let us know in the comments section below. You can also contact us through our [support forums](https://www.syncfusion.com/forums), [support portal](https://support.syncfusion.com/create), or [feedback portal](https://www.syncfusion.com/feedback/blazor-components?control=charts). We are always happy to assist you!
+`Pages/Index.razor` - Implements the `SfChart`, `ChartSeries`, `ChartMarker`, `ChartTooltipSettings`, tooltip template markup, sample data collection, and `StepChartData` model used by the demonstration.
 
+## Support and Feedback
+
+- For general product questions, visit the [Syncfusion Community Forum](https://www.syncfusion.com/forums) or [Syncfusion Support](https://www.syncfusion.com/support).
+- To report an issue specific to this sample, open a GitHub issue in this repository.
+- Review the official Syncfusion Blazor Chart tooltip documentation: https://help.syncfusion.com/chart-sdk/blazor/charts/tool-tip
+
+## License
+
+This is a Syncfusion sample project provided to demonstrate product usage. Review the [Syncfusion license terms](https://www.syncfusion.com/sales/pricing?category=ui-components) before using Syncfusion components in your own applications.
