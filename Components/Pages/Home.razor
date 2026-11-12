@@ -1,4 +1,5 @@
 ﻿@page "/"
+@rendermode InteractiveServer
 
 @using Syncfusion.Blazor.Charts
 
@@ -12,7 +13,7 @@
     <ChartTooltipSettings Enable="true">
         <Template>
             @{
-                var data = context as ChartTooltipInfo;
+                var data = (ChartTooltipInfo)context;
                 <div>
                     <table style="width:100%;  border: 1px solid black;">
                         <tr><th colspan="2" bgcolor="#00FFFF">Unemployment</th></tr>
@@ -39,7 +40,7 @@
 
     public class StepChartData
     {
-        public string Year { get; set; }
+        public string Year { get; set; } = string.Empty;
         public double YValue { get; set; }
     }
 }
